@@ -1,13 +1,20 @@
 fn main() {
-    let s1 = String::from("hello");
+    let my_string = String::from("hello world");
 
-    let (s2, len) = calculate_length(s1);
+    // `first_word` works on slices of `String`s, whether partial or whole
+    let word = first_word(&my_string[..]);
 
-    println!("The length of '{}' is {}.", s2, len);
+    println!("{}", word);
 }
 
-fn calculate_length(s: String) -> (String, usize) {
-    let length = s.len(); // len() returns the length of a String
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
 
-    return (s, length);
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    return &s[..];
 }
