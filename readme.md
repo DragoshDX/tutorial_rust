@@ -1,1 +1,1 @@
-Invatam Rust Test
+Invatam Rust
